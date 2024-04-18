@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">Admin</a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/admin/add-user">Add User</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/signout"><button>Log Out</button></a>
+        </li>
+        
+      </ul>
+      <form class="d-flex" action="/admin/search" method="post">
+        <input class="form-control me-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Password</th>
+      <th scope="col">Email</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each users}}
+    <tr>
+      <td>{{this.name}}</td>
+      <td>{{this.password}}</td>
+      <td>{{this.email}}</td>
+      <td>{{this.gender}}</td>
+      <td><a href="/admin/edit/{{this._id}}" class="btn btn-primary" type="submit">Edit</a></td>
+     <td><a href="/admin/delete/{{this._id}}" onclick=" return confirm('Do yo want to delete? {{this.name}}')" class="btn btn-danger" type="submit">Delete</a></td>
+
+      
+
+      {{/each}}
+    </tr>
+  </tbody>
+</table>
